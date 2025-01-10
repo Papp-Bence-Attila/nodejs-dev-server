@@ -87,6 +87,8 @@ server.listen(PORT, HOST, () => {
         case "Windows_NT":
             exec(`start http://${HOST}:${PORT}`);
             break;
+        default:
+            console.log("Unable to determine platfor, there for unable to open browser")
     }
     
 });
