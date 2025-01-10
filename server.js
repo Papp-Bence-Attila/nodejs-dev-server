@@ -27,7 +27,7 @@ const getContentType = (filePath) => {
 
 // WebSocket script to inject
 const liveReloadScript = `
-    <!-- Code injected by NodeJs custom webserver -->
+    <!-- Code injected by NodeJs custom web server -->
     <script>
         const socket = new WebSocket(\`ws://\${location.host}\`);
         socket.onmessage = (event) => {
