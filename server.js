@@ -73,6 +73,9 @@ const server = http.createServer((req, res) => {
 // Start the server
 server.listen(PORT, HOST, () => {
     console.log(`Server is running at http://${HOST}:${PORT}/`);
+    
+    // Open webpage 
+    await open(`http://${HOST}:${PORT}`);
 });
 
 // Create WebSocket server
