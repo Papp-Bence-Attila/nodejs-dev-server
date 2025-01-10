@@ -3,6 +3,8 @@ const fs = require("fs");
 const path = require("path");
 const WebSocket = require("ws");
 const chokidar = require("chokidar");
+const { exec } = require('child_process');
+const os = require("os");
 
 const PORT = 3000;
 const HOST = "localhost";
@@ -73,9 +75,20 @@ const server = http.createServer((req, res) => {
 // Start the server
 server.listen(PORT, HOST, () => {
     console.log(`Server is running at http://${HOST}:${PORT}/`);
+
+    // Open in default browser
+    switch (os.type()) {
+        case "Linux": 
+            exec(`xdg-open http://${HOST}:${PORT}`); 
+            break;
+        case "Darwin": 
+            exec(`open http://${HOST}:${PORT}`); 
+            break;
+        case "Windows_NT":
+            exec(`start http://${HOST}:${PORT}`);
+            break;
+    }
     
-    // Open webpage 
-    await open(`http://${HOST}:${PORT}`);
 });
 
 // Create WebSocket server
